@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.sometimes.sometimes.global.web.entity.TimeEntity;
+import org.sometimes.sometimes.global.web.enums.user.AccountStatus;
+import org.sometimes.sometimes.global.web.enums.user.Roles;
 import org.sometimes.sometimes.global.web.enums.userInfoDetail.Gender;
 import org.sometimes.sometimes.user.web.dto.auth.SignupReqDto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -61,6 +64,20 @@ public class UserEntity extends TimeEntity {
     @Column(name = "coupon_id")
     private List<Long> couponList;
 
+    @NotNull
+    @Schema(description = "계정 삭제 유무", example = "ACTIVE")
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+
+    @Schema(description = "계정 탈퇴 날짜", example = "240101")
+    @Column(name = "deleted_time")
+    private LocalDateTime deletedTime;
+
+    @NotNull
+    @Schema(description = "유저 권한", example = "ROLE_USER")
+    @Enumerated(EnumType.STRING)
+    private Roles userRole;
+
     public static UserEntity from(SignupReqDto signupReqDto, String hashedPwd) {
         return UserEntity.builder()
                 .userId(signupReqDto.getUserId())
@@ -71,6 +88,8 @@ public class UserEntity extends TimeEntity {
                 .birth(signupReqDto.getBirth())
                 .address(signupReqDto.getAddress())
                 .job(signupReqDto.getJob())
+                .accountStatus(AccountStatus.ACTIVE)
+                .userRole(Roles.ROLE_USER)
                 .build();
     }
 }
