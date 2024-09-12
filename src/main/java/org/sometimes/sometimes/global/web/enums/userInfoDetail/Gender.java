@@ -1,4 +1,4 @@
-package org.sometimes.sometimes.global.web.enums;
+package org.sometimes.sometimes.global.web.enums.userInfoDetail;
 
 public enum Gender {
 

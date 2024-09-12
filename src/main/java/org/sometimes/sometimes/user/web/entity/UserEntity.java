@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.sometimes.sometimes.global.web.entity.TimeEntity;
-import org.sometimes.sometimes.global.web.enums.Gender;
+import org.sometimes.sometimes.global.web.enums.userInfoDetail.Gender;
 
 import java.util.List;
 
