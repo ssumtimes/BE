@@ -11,10 +11,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 @Builder
 public class LoginReqDto {
 
-    @Schema(description = "유저 아이디", example = "admin")
+    @Schema(description = "유저 아이디", example = "test")
     private String userId;
 
-    @Schema(description = "비밀번호", example = "admin")
+    @Schema(description = "비밀번호", example = "test")
     private String userPassword;
 
     public UsernamePasswordAuthenticationToken toAuthentication() {

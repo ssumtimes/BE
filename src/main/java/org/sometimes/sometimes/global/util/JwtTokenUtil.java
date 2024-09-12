@@ -70,14 +70,14 @@ public class JwtTokenUtil {
      * 기능 - AccessToken 생성
      *
      * @param authorities
-     * @param email
+     * @param id
      * @param key
      *
      * @return accessToken
      */
-    public static String createAccessToken(String authorities, String email, Key key) {
+    public static String createAccessToken(String authorities, String id, Key key) {
         return Jwts.builder()
-                .setSubject(email)
+                .setSubject(id)
                 .claim(AUTHORITIES_KEY, authorities)
                 .setExpiration(new Date(System.currentTimeMillis() + ACCESS_TOKEN_EXPIRE_TIME)) // 30 만료
                 .signWith(key)
