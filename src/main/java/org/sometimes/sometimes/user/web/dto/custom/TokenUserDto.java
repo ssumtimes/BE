@@ -1,4 +1,4 @@
-package org.sometimes.sometimes.global.web.dto.custom;
+package org.sometimes.sometimes.user.web.dto.custom;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

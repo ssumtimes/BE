@@ -1,4 +1,4 @@
-package org.sometimes.sometimes.global.web.dto.custom;
+package org.sometimes.sometimes.user.web.dto.custom;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

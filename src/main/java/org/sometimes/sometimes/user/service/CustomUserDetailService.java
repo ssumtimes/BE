@@ -1,8 +1,8 @@
 package org.sometimes.sometimes.user.service;
 
 import lombok.RequiredArgsConstructor;
-import org.sometimes.sometimes.global.web.dto.custom.CustomUserDetailDto;
-import org.sometimes.sometimes.global.web.dto.custom.TokenUserDto;
+import org.sometimes.sometimes.user.web.dto.custom.CustomUserDetailDto;
+import org.sometimes.sometimes.user.web.dto.custom.TokenUserDto;
 import org.sometimes.sometimes.user.repository.UserRepository;
 import org.sometimes.sometimes.user.web.entity.UserEntity;
 import org.springframework.security.core.userdetails.UserDetails;
