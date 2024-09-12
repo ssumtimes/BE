@@ -11,8 +11,8 @@ import org.sometimes.sometimes.global.web.enums.userInfoDetail.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Table(name = "user_info_detail")
-public class UserInfoDetail {
+@Table(name = "user_info_detail_table")
+public class UserInfoDetailEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
