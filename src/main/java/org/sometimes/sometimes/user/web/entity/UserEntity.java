@@ -35,7 +35,7 @@ public class UserEntity extends TimeEntity {
 
     @Column(nullable = false)
     @Schema(description = "사용자 이름", example = "홍길동")
-    private String username;
+    private Integer username;
 
     @Column(nullable = false, unique = true)
     @Schema(description = "핸드폰 번호", example = "01012345678")
