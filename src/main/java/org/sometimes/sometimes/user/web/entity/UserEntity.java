@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.sometimes.sometimes.global.web.entity.TimeEntity;
 import org.sometimes.sometimes.global.web.enums.userInfoDetail.Gender;
+import org.sometimes.sometimes.user.web.dto.auth.SignupReqDto;
 
 import java.util.List;
 
@@ -35,11 +36,11 @@ public class UserEntity extends TimeEntity {
 
     @Column(nullable = false)
     @Schema(description = "사용자 이름", example = "홍길동")
-    private Integer username;
+    private String username;
 
     @Column(nullable = false, unique = true)
     @Schema(description = "핸드폰 번호", example = "01012345678")
-    private String phoneNumber;
+    private Integer phoneNumber;
 
     @Enumerated(EnumType.STRING)
     @Schema(description = "성별", example = "MALE")
@@ -59,4 +60,17 @@ public class UserEntity extends TimeEntity {
     @Schema(description = "보유 쿠폰 리스트", example = "[1, 2, 3]")
     @Column(name = "coupon_id")
     private List<Long> couponList;
+
+    public static UserEntity from(SignupReqDto signupReqDto, String hashedPwd) {
+        return UserEntity.builder()
+                .userId(signupReqDto.getUserId())
+                .userPwd(hashedPwd)
+                .username(signupReqDto.getUsername())
+                .phoneNumber(signupReqDto.getPhoneNumber())
+                .gender(signupReqDto.getGender())
+                .birth(signupReqDto.getBirth())
+                .address(signupReqDto.getAddress())
+                .job(signupReqDto.getJob())
+                .build();
+    }
 }
