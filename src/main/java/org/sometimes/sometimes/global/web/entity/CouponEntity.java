@@ -1,4 +1,4 @@
-package org.sometimes.sometimes.user.web.entity;
+package org.sometimes.sometimes.global.web.entity;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
