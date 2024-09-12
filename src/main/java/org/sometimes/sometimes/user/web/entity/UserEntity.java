@@ -55,21 +55,8 @@ public class UserEntity extends TimeEntity {
     private String job;
 
     @ElementCollection
+    @CollectionTable(name = "user_coupons", joinColumns = @JoinColumn(name = "user_id"))
     @Schema(description = "보유 쿠폰 리스트", example = "[1, 2, 3]")
-    private List<Integer> couponList;
-
-//    @ManyToOne
-//    @JoinColumn(name = "ideal_type_cid")
-//    @Schema(description = "이상형 참조 ID")
-//    private IdealType idealType;
-//
-//    @OneToOne
-//    @JoinColumn(name = "user_detail_cid")
-//    @Schema(description = "사용자 상세정보 참조 ID")
-//    private UserDetail userDetail;
-//
-//    @OneToOne
-//    @JoinColumn(name = "user_image_cid")
-//    @Schema(description = "사용자 이미지 참조 ID")
-//    private UserImage userImage;
+    @Column(name = "coupon_id")
+    private List<Long> couponList;
 }

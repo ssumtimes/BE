@@ -20,7 +20,7 @@ public class ApplyInfoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(description = "지원서 ID", example = "1")
-    private Long applyFormId;
+    private Long applyFormCid;
 
     @Column(nullable = false)
     @Schema(description = "약관 동의 여부", required = true, example = "true")
@@ -111,7 +111,6 @@ public class ApplyInfoEntity {
     @Schema(description = "흡연 여부", example = "NO")
     private Smoking smoking;
 
-    @Enumerated(EnumType.STRING)
     @Schema(description = "종교", example = "NONE")
     private String religion;
 
@@ -172,10 +171,10 @@ public class ApplyInfoEntity {
     private String explainThirdMostImportant;
 
     @ElementCollection
-    @CollectionTable(name = "less_important_in_partner", joinColumns = @JoinColumn(name = "applyFormId"))
-    @Column(name = "lessImportantInPartner")
+    @CollectionTable(name = "less_important_in_partner", joinColumns = @JoinColumn(name = "applyFormCid"))
+    @Column(name = "less_important_partner")
     @Schema(description = "덜 중요한 조건 리스트", example = "[\"나이\", \"거주지\"]")
-    private List<String> lessImportantInPartner;
+    private List<ImportantInPartner> lessImportantInPartner;
 
     @Column(length = 255)
     @Schema(description = "기타 이성의 특징", example = "유머 감각이 뛰어난 사람")
