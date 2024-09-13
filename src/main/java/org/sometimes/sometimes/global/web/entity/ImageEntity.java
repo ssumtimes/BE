@@ -23,4 +23,11 @@ public class ImageEntity {
 
     @Schema(description = "이미지 UUID", example = "abcd-efgh-1234")
     private String name;
+
+    public static ImageEntity from(String originName, String storedImagedPath) {
+        return ImageEntity.builder()
+                .path(storedImagedPath)
+                .name(originName)
+                .build();
+    }
 }

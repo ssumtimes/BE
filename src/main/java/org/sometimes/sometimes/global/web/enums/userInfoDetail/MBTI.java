@@ -17,7 +17,8 @@ public enum MBTI {
     ISTP("ISTP"), // 장인형
     ISFP("ISFP"), // 모험가형
     ESTP("ESTP"), // 사업가형
-    ESFP("ESFP"); // 연예인형
+    ESFP("ESFP"), // 연예인형
+    NONE("NONE"); // 모름
 
     private final String mbti;
 

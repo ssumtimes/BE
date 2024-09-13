@@ -48,4 +48,14 @@ public class UserValidation {
             throw new BadCredentialsException("비밀번호가 일치하지 않습니다.");
         }
     }
+
+    /**
+     * 유저 유무 확인
+     * @param userId 유저 아이디
+     * @return userEntity 유저 엔티티
+     */
+    public UserEntity validateExistUser(String userId) {
+        return userRepository.findByUserId(userId)
+                .orElseThrow(()-> new CustomNotFoundException("로그인된 유저가 존재하지 않습니다."));
+    }
 }
