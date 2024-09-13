@@ -29,7 +29,7 @@ public class UserEntity extends TimeEntity {
 
     @NotNull
     @Schema(description = "유저 아이디", example = "test")
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private String userId;
 
     @NotNull
@@ -37,11 +37,11 @@ public class UserEntity extends TimeEntity {
     @Column(name = "user_pwd")
     private String userPwd;
 
-    @Column(nullable = false)
+    @Column(name = "username")
     @Schema(description = "사용자 이름", example = "홍길동")
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "phone_number", unique = true)
     @Schema(description = "핸드폰 번호", example = "01012345678")
     private Integer phoneNumber;
 
