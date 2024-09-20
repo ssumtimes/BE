@@ -22,16 +22,16 @@ public class SignupReqDto {
     private String username;
 
     @Schema(description = "핸드폰 번호", example = "01012345678")
-    private Integer phoneNumber;
+    private Integer contactNumber;
 
     @Schema(description = "성별", example = "MALE")
     private Gender gender;
 
     @Schema(description = "생일", example = "19900101")
-    private Integer birth;
+    private Integer birthDate;
 
     @Schema(description = "주소", example = "서울특별시 강남구")
-    private String address;
+    private String location;
 
     @Schema(description = "직업", example = "개발자")
     private String job;
