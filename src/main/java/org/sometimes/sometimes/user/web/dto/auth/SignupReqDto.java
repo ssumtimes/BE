@@ -2,6 +2,7 @@ package org.sometimes.sometimes.user.web.dto.auth;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import org.sometimes.sometimes.global.web.enums.userInfoDetail.Earning;
 import org.sometimes.sometimes.global.web.enums.userInfoDetail.Gender;
 
 @Getter
@@ -34,4 +35,19 @@ public class SignupReqDto {
 
     @Schema(description = "직업", example = "개발자")
     private String job;
+
+    @Schema(description = "연 소득 구간")
+    private Earning incomeRange;
+
+    @Schema(description = "키")
+    private Integer height;
+
+    @Schema(description = "이성을 볼때 중요하게 보는 항목")
+    private String importantFactors;
+
+    @Schema(description = "sms 수신동의")
+    private Boolean agreedToSms;
+
+    @Schema(description = "email 수신동의")
+    private Boolean agreedToEmail;
 }
