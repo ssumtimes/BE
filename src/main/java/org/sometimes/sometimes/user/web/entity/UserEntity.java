@@ -7,6 +7,7 @@ import lombok.*;
 import org.sometimes.sometimes.global.web.entity.TimeEntity;
 import org.sometimes.sometimes.global.web.enums.user.AccountStatus;
 import org.sometimes.sometimes.global.web.enums.user.Roles;
+import org.sometimes.sometimes.global.web.enums.userInfoDetail.Earning;
 import org.sometimes.sometimes.global.web.enums.userInfoDetail.Gender;
 import org.sometimes.sometimes.user.web.dto.auth.SignupReqDto;
 
@@ -41,22 +42,37 @@ public class UserEntity extends TimeEntity {
     @Schema(description = "사용자 이름", example = "홍길동")
     private String username;
 
-    @Column(name = "phone_number", unique = true)
-    @Schema(description = "핸드폰 번호", example = "01012345678")
-    private Integer phoneNumber;
-
     @Enumerated(EnumType.STRING)
     @Schema(description = "성별", example = "MALE")
     private Gender gender;
 
+    @Column(name = "phone_number", unique = true)
+    @Schema(description = "핸드폰 번호", example = "01012345678")
+    private Integer contactNumber;
+
     @Schema(description = "생일", example = "19900101")
-    private Integer birth;
+    private Integer birthDate;
 
     @Schema(description = "주소", example = "서울특별시 강남구")
-    private String address;
+    private String location;
 
     @Schema(description = "직업", example = "개발자")
     private String job;
+
+    @Schema(description = "연 소득 구간")
+    private Earning incomeRange;
+
+    @Schema(description = "키")
+    private Integer height;
+
+    @Schema(description = "이성을 볼때 중요하게 보는 항목")
+    private String importantFactors;
+
+    @Schema(description = "sms 수신동의")
+    private Boolean agreedToSms;
+
+    @Schema(description = "email 수신동의")
+    private Boolean agreedToEmail;
 
     @ElementCollection
     @CollectionTable(name = "user_coupons", joinColumns = @JoinColumn(name = "user_id"))
@@ -83,11 +99,15 @@ public class UserEntity extends TimeEntity {
                 .userId(signupReqDto.getUserId())
                 .userPwd(hashedPwd)
                 .username(signupReqDto.getUsername())
-                .phoneNumber(signupReqDto.getPhoneNumber())
+                .contactNumber(signupReqDto.getPhoneNumber())
                 .gender(signupReqDto.getGender())
-                .birth(signupReqDto.getBirth())
-                .address(signupReqDto.getAddress())
+                .birthDate(signupReqDto.getBirth())
+                .location(signupReqDto.getAddress())
                 .job(signupReqDto.getJob())
+                .importantFactors(signupReqDto.getImportantFactors())
+                .incomeRange(signupReqDto.getIncomeRange())
+                .height(signupReqDto.getHeight())
+                .importantFactors(signupReqDto.getImportantFactors())
                 .accountStatus(AccountStatus.ACTIVE)
                 .userRole(Roles.ROLE_USER)
                 .build();
