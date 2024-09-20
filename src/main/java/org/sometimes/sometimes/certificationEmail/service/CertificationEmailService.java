@@ -36,7 +36,7 @@ public class CertificationEmailService {
 
     public void joinEmail(EmailReqDto emailReqDto) {
 
-        String title = "[썸타임즈 인증] 쇼핑몰 가입 인증번호";
+        String title = "[썸타임즈 인증] 썸타임즈 가입 인증번호";
         String content =
                 "<div style=\"font-family: Arial, sans-serif; font-size: 14px; color: #333;\">" +
                         "<h2 style=\"color: #2E86C1;\">썸타임즈 가입 인증번호</h2>" +

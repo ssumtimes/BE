@@ -3,6 +3,7 @@ package org.sometimes.sometimes.user.service;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.sometimes.sometimes.global.aws.ImageUploadService;
 import org.sometimes.sometimes.global.config.security.TokenProvider;
 import org.sometimes.sometimes.user.repository.UserRepository;
 import org.sometimes.sometimes.user.util.UserValidation;
@@ -15,6 +16,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -30,17 +34,26 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserValidation userValidation;
 
+    // SERVICE
+    private final ImageUploadService imageUploadService;
+
     /**
      * 회원가입
      * @param signupReqDto 가입을 진행하는 유저의 정보
      */
     @Transactional
-    public void signup(SignupReqDto signupReqDto) {
+    public void signup(MultipartFile profileImage, SignupReqDto signupReqDto) {
         idDuplicateTest(signupReqDto.getUserId());
 
         String hashedPwd = passwordEncoder.encode(signupReqDto.getUserPwd());
 
         UserEntity signupUser = UserEntity.from(signupReqDto, hashedPwd);
+
+        if(profileImage != null && !profileImage.isEmpty()) {
+           Long profileImageCid = imageUploadService.uploadUserProfileImage(profileImage);
+
+           signupUser.setUserProfileImageCid(profileImageCid);
+        }
 
         userRepository.save(signupUser);
     }
