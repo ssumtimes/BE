@@ -74,6 +74,9 @@ public class UserEntity extends TimeEntity {
     @Schema(description = "email 수신동의")
     private Boolean agreedToEmail;
 
+    @Schema(description = "유저 프로필 이미지 cid")
+    private Long userProfileImageCid;
+
     @ElementCollection
     @CollectionTable(name = "user_coupons", joinColumns = @JoinColumn(name = "user_id"))
     @Schema(description = "보유 쿠폰 리스트", example = "[1, 2, 3]")

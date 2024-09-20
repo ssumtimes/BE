@@ -1,6 +1,8 @@
 package org.sometimes.sometimes.user.web.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +12,14 @@ import org.sometimes.sometimes.user.service.AuthService;
 import org.sometimes.sometimes.user.web.dto.auth.LoginReqDto;
 import org.sometimes.sometimes.user.web.dto.auth.SignupReqDto;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @Slf4j
@@ -22,11 +30,15 @@ public class AuthController {
 
     private final AuthService authService;
 
+
     @Operation(summary = "회원가입", description = "회원가입을 다루는 API 입니다.")
-    @PostMapping("/signup")
-    public ResponseEntity<CommonResponseDto> signup(@RequestBody SignupReqDto signupReqDto) {
+    @PostMapping(value = "/signup", consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CommonResponseDto> signup(
+            @RequestPart(name = "profileImage", required = false) MultipartFile profileImage,
+            @RequestPart(name = "signupInfo") @Parameter(schema = @Schema(type = "string", format = "binary")) SignupReqDto signupReqDto
+    ) {
         log.debug("[AUTH] 회원가입 요청이 들어왔습니다. \n{}", signupReqDto);
-        authService.signup(signupReqDto);
+        authService.signup(profileImage, signupReqDto);
         log.debug("[AUTH] 회원가입 성공");
 
         return ResponseEntity.status(HttpStatus.CREATED).body(CommonResponseDto.createSuccessResponse("회원가입 성공"));
