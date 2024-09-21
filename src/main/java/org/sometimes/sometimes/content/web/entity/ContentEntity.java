@@ -44,4 +44,7 @@ public class ContentEntity extends TimeEntity {
 
     @Schema(description = "남자 할인률")
     private Integer maleDiscount;
+
+    @Schema(description = "여자 할인률")
+    private Integer femaleDiscount;
 }
