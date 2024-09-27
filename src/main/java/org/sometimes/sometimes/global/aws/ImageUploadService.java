@@ -131,6 +131,13 @@ public class ImageUploadService {
         return newImage.getImageCid();
     }
 
+    public void uploadContentImage(MultipartFile image) {
+
+        uploadImageToS3(image, "content-image");
+
+        log.debug("[PROFILE-IMAGE] 사진이 s3에 업로드 되었습니다.");
+    }
+
     /**
      * 이미지 파일의 새로운 이름을 생성합니다.
      *
